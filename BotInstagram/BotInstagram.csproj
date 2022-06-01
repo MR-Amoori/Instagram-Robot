@@ -36,6 +36,7 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.6.7\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="InstagramApiSharp, Version=1.7.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InstagramApiSharp.1.7.2\lib\net461\InstagramApiSharp.dll</HintPath>
     </Reference>
@@ -97,6 +98,12 @@
     <Compile Include="Foms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Foms\frmActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Foms\frmActivity.Designer.cs">
+      <DependentUpon>frmActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Foms\frmEditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +114,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Foms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Foms\frmActivity.resx">
+      <DependentUpon>frmActivity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Foms\frmEditProfile.resx">
       <DependentUpon>frmEditProfile.cs</DependentUpon>

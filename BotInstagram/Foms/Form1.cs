@@ -2,6 +2,7 @@
 using InstagramApiSharp.API;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes;
+using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Logger;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,10 @@ namespace BotInstagram
                 gbFollowers.Enabled = true;
                 gbFollowings.Enabled = true;
                 gbFollowAndUnFollow.Enabled = true;
+                gbBlocks.Enabled = true;
+                btnLogout.Enabled = true;
+                gbDirect.Enabled = true;
+                gbShowPostes.Enabled = true;
             }
             else
             {
@@ -205,6 +210,134 @@ namespace BotInstagram
         {
             if (!(e.KeyChar >= '0' && e.KeyChar <= '9'))
                 e.Handled = true;
+        }
+
+        private async void btnLoadBlockUsers_Click(object sender, EventArgs e)
+        {
+            dgvBlockUsers.Rows.Clear();
+            var blocks = await ctx.api.UserProcessor.GetBlockedUsersAsync(PaginationParameters.Empty);
+            int count = 1;
+            foreach (var item in blocks.Value.BlockedList)
+            {
+                dgvBlockUsers.Rows.Add(count, item.UserName, item.FullName);
+                count++;
+            }
+        }
+
+        private async void btnBlockOrUnBlock_Click(object sender, EventArgs e)
+        {
+            var blocks = await ctx.api.UserProcessor.GetBlockedUsersAsync(PaginationParameters.Empty);
+            if (blocks.Value.BlockedList.Any(b => b.UserName.Contains(txtUsernameForFollowAndUnFollow.Text)))
+            {
+                var user = await ctx.api.UserProcessor.GetUserAsync(txtUsernameForFollowAndUnFollow.Text);
+                var block = ctx.api.UserProcessor.UnBlockUserAsync(user.Value.Pk);
+                MessageBox.Show("UnBlock !");
+                btnLoadBlockUsers.PerformClick();
+            }
+            else
+            {
+                var user = await ctx.api.UserProcessor.GetUserAsync(txtUsernameForFollowAndUnFollow.Text);
+                var block = ctx.api.UserProcessor.BlockUserAsync(user.Value.Pk);
+                MessageBox.Show("Block !");
+                btnLoadBlockUsers.PerformClick();
+            }
+        }
+
+        private void dgvBlockUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtUsernameForFollowAndUnFollow.Text = dgvBlockUsers.SelectedCells[0].Value.ToString();
+        }
+
+        private async void btnLogout_Click(object sender, EventArgs e)
+        {
+            await ctx.api.LogoutAsync();
+            gbLogin.Enabled = true;
+            btnLogin.Enabled = false;
+            gbCommand.Enabled = false;
+            gbImageProfile.Enabled = false;
+            pcImage.Image = null;
+            gbFollowers.Enabled = false;
+            gbFollowings.Enabled = false;
+            gbFollowAndUnFollow.Enabled = false;
+            gbBlocks.Enabled = false;
+            btnLogout.Enabled = false;
+            gbDirect.Enabled = false;
+            gbLogin.Enabled = true;
+            gbShowPostes.Enabled = false;
+        }
+
+        private async void btnSendMessage_Click(object sender, EventArgs e)
+        {
+            var user = await ctx.api.UserProcessor.GetUserAsync(txtDirect.Text);
+            var direct = await ctx.api.MessagingProcessor.SendDirectTextAsync(user.Value.Pk.ToString(), null, txtMessageDirect.Text);
+            if (direct.Succeeded)
+            {
+                MessageBox.Show("Sended ...");
+            }
+        }
+
+        private async void btnSendVideoDirect_Click(object sender, EventArgs e)
+        {
+            var inbox = await ctx.api.MessagingProcessor.GetDirectInboxAsync(PaginationParameters.MaxPagesToLoad(1));
+            var user = await ctx.api.UserProcessor.GetUserAsync(txtDirect.Text);
+            var threadeId = inbox.Value.Inbox.Threads.FirstOrDefault(i => i.Title == user.Value.FullName).ThreadId;
+
+            OpenFileDialog op = new OpenFileDialog();
+
+            var imageUp = new InstaImage()
+            {
+                Uri = op.FileName
+            };
+
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                var direct = await ctx.api.MessagingProcessor.SendDirectPhotoAsync(imageUp, threadeId);
+                if (direct.Succeeded)
+                {
+                    MessageBox.Show("Sended ...");
+                }
+                else
+                {
+                    MessageBox.Show("Filed ... \n" + direct.Info.Message);
+                }
+            }
+        }
+
+        private async void btnSendPhotoDirect_Click(object sender, EventArgs e)
+        {
+            var inbox = await ctx.api.MessagingProcessor.GetDirectInboxAsync(PaginationParameters.MaxPagesToLoad(1));
+            var user = await ctx.api.UserProcessor.GetUserAsync(txtDirect.Text);
+            var threadeId = inbox.Value.Inbox.Threads.FirstOrDefault(i => i.Title == user.Value.FullName).ThreadId;
+
+            OpenFileDialog op = new OpenFileDialog();
+
+            var videoUp = new InstaVideo()
+            {
+                Uri = op.FileName
+            };
+
+            var videoUpload = new InstaVideoUpload()
+            {
+                Video = videoUp
+            };
+
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                var direct = await ctx.api.MessagingProcessor.SendDirectVideoAsync(videoUpload, threadeId);
+                if (direct.Succeeded)
+                {
+                    MessageBox.Show("Sended ...");
+                }
+                else
+                {
+                    MessageBox.Show("Filed ... \n" + direct.Info.Message);
+                }
+            }
+        }
+
+        private void btnActivities_Click(object sender, EventArgs e)
+        {
+            new Foms.frmActivity().ShowDialog();
         }
 
 
