@@ -19,7 +19,6 @@ namespace BotInstagram
         // In The Name Of God
 
         private static UserSessionData user;
-        private static IInstaApi api;
 
         public frmMain()
         {
@@ -43,13 +42,13 @@ namespace BotInstagram
                 Password = txtPassword.Text
             };
 
-            api = InstaApiBuilder.CreateBuilder()
+            ctx.api = InstaApiBuilder.CreateBuilder()
                 .SetUser(user)
                 .UseLogger(new DebugLogger(LogLevel.All))
                 .SetRequestDelay(RequestDelay
                 .FromSeconds(0, 1)).Build();
 
-            var loginRequest = await api.LoginAsync();
+            var loginRequest = await ctx.api.LoginAsync();
 
             if (loginRequest.Succeeded)
             {
@@ -62,6 +61,11 @@ namespace BotInstagram
                 MessageBox.Show("Login Failed ! \n" + loginRequest.Info.Message);
             }
 
+        }
+
+        private void btnEditProfile_Click(object sender, EventArgs e)
+        {
+            (new Foms.frmEditProfile()).ShowDialog();
         }
     }
 }
