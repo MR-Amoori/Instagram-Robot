@@ -60,6 +60,7 @@ namespace BotInstagram
                 pcImage.Load(ctx.api.GetLoggedUser().LoggedInUser.ProfilePicUrl);
                 gbFollowers.Enabled = true;
                 gbFollowings.Enabled = true;
+                gbFollowAndUnFollow.Enabled = true;
             }
             else
             {
@@ -118,5 +119,102 @@ namespace BotInstagram
                 dgvFollowings.Rows.Add(item.UserName, item.FullName);
             }
         }
+
+        private async void btnFollows_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var follow = await ctx.api.UserProcessor.GetUserAsync(txtUsernameForFollowAndUnFollow.Text);
+                var result = await ctx.api.UserProcessor.FollowUserAsync(follow.Value.Pk);
+                if (result.Succeeded)
+                {
+                    MessageBox.Show("Follow !");
+                }
+                else
+                {
+                    MessageBox.Show("Failed ! \n" + result.Info.Message);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Failed !");
+            }
+
+        }
+
+        private async void btnUnfollows_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var follow = await ctx.api.UserProcessor.GetUserAsync(txtUsernameForFollowAndUnFollow.Text);
+                var result = await ctx.api.UserProcessor.UnFollowUserAsync(follow.Value.Pk);
+                if (result.Succeeded)
+                {
+                    MessageBox.Show("Un Follow !");
+                }
+                else
+                {
+                    MessageBox.Show("Failed ! \n" + result.Info.Message);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Failed !");
+            }
+        }
+
+        private async void btnStartProcessUnfollow_Click(object sender, EventArgs e)
+        {
+            btnStartProcessUnfollow.Enabled = false;
+            var followings = await ctx.api.UserProcessor.GetUserFollowingAsync(txtUsername.Text, PaginationParameters.Empty);
+            foreach (var item in followings.Value)
+            {
+                var followingsUser = await ctx.api.UserProcessor.GetUserFollowingAsync(item.UserName, PaginationParameters.Empty);
+                if (followingsUser.Succeeded)
+                {
+                    if (followingsUser.Value.Any(f => f.UserName.Contains(txtUsername.Text)))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        var user = await ctx.api.UserProcessor.GetUserAsync(item.UserName);
+                        var res = ctx.api.UserProcessor.UnFollowUserAsync(user.Value.Pk);
+                    }
+                }
+                await Patience();
+            }
+        }
+
+        private Task Patience()
+        {
+            return Task.Run(() =>
+            {
+                System.Threading.Thread.Sleep(30000);
+            });
+        }
+
+
+        //private async void button1_Click(object sender, EventArgs e)
+        //{
+        //    var username = await ctx.api.UserProcessor.GetCurrentUserAsync();
+        //    var followings = await ctx.api.UserProcessor.GetUserFollowingAsync("mr__amoori", PaginationParameters.Empty);
+        //    List<string> ls = new List<string>();
+        //    foreach (var item in followings.Value)
+        //    {
+        //        ls.Add(item.UserName);
+        //    }
+        //    if (ls.Any(c => c.Contains(username.Value.UserName)))
+        //    {
+        //        MessageBox.Show("Ok");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("No");
+        //        var result = await ctx.api.UserProcessor.GetUserAsync("mr__amoori");
+        //        var res = ctx.api.UserProcessor.UnFollowUserAsync(result.Value.Pk);
+        //    }
+        //}
+
     }
 }

@@ -37,19 +37,27 @@
             this.gbCommand = new System.Windows.Forms.GroupBox();
             this.btnEditProfile = new System.Windows.Forms.Button();
             this.gbImageProfile = new System.Windows.Forms.GroupBox();
-            this.pcImage = new System.Windows.Forms.PictureBox();
-            this.btnRemoveImage = new System.Windows.Forms.Button();
             this.btnChangeImage = new System.Windows.Forms.Button();
+            this.btnRemoveImage = new System.Windows.Forms.Button();
+            this.pcImage = new System.Windows.Forms.PictureBox();
             this.gbFollowers = new System.Windows.Forms.GroupBox();
-            this.btnLoadFollowers = new System.Windows.Forms.Button();
             this.dgvFollowers = new System.Windows.Forms.DataGridView();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnLoadFollowers = new System.Windows.Forms.Button();
             this.gbFollowings = new System.Windows.Forms.GroupBox();
             this.dgvFollowings = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLoadListFollowings = new System.Windows.Forms.Button();
+            this.gbFollowAndUnFollow = new System.Windows.Forms.GroupBox();
+            this.txtUsernameForFollowAndUnFollow = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnUnfollows = new System.Windows.Forms.Button();
+            this.btnFollows = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnStartProcessUnfollow = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -58,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFollowers)).BeginInit();
             this.gbFollowings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFollowings)).BeginInit();
+            this.gbFollowAndUnFollow.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLogin
@@ -122,9 +131,9 @@
             // 
             this.gbCommand.Controls.Add(this.btnEditProfile);
             this.gbCommand.Enabled = false;
-            this.gbCommand.Location = new System.Drawing.Point(218, 12);
+            this.gbCommand.Location = new System.Drawing.Point(552, 12);
             this.gbCommand.Name = "gbCommand";
-            this.gbCommand.Size = new System.Drawing.Size(754, 144);
+            this.gbCommand.Size = new System.Drawing.Size(420, 144);
             this.gbCommand.TabIndex = 1;
             this.gbCommand.TabStop = false;
             this.gbCommand.Text = "Commands : ";
@@ -152,14 +161,15 @@
             this.gbImageProfile.TabStop = false;
             this.gbImageProfile.Text = "Image Profile : ";
             // 
-            // pcImage
+            // btnChangeImage
             // 
-            this.pcImage.Location = new System.Drawing.Point(6, 20);
-            this.pcImage.Name = "pcImage";
-            this.pcImage.Size = new System.Drawing.Size(188, 187);
-            this.pcImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcImage.TabIndex = 0;
-            this.pcImage.TabStop = false;
+            this.btnChangeImage.Location = new System.Drawing.Point(6, 213);
+            this.btnChangeImage.Name = "btnChangeImage";
+            this.btnChangeImage.Size = new System.Drawing.Size(91, 23);
+            this.btnChangeImage.TabIndex = 1;
+            this.btnChangeImage.Text = "Change";
+            this.btnChangeImage.UseVisualStyleBackColor = true;
+            this.btnChangeImage.Click += new System.EventHandler(this.btnChangeImage_Click);
             // 
             // btnRemoveImage
             // 
@@ -171,15 +181,14 @@
             this.btnRemoveImage.UseVisualStyleBackColor = true;
             this.btnRemoveImage.Click += new System.EventHandler(this.btnRemoveImage_Click);
             // 
-            // btnChangeImage
+            // pcImage
             // 
-            this.btnChangeImage.Location = new System.Drawing.Point(6, 213);
-            this.btnChangeImage.Name = "btnChangeImage";
-            this.btnChangeImage.Size = new System.Drawing.Size(91, 23);
-            this.btnChangeImage.TabIndex = 1;
-            this.btnChangeImage.Text = "Change";
-            this.btnChangeImage.UseVisualStyleBackColor = true;
-            this.btnChangeImage.Click += new System.EventHandler(this.btnChangeImage_Click);
+            this.pcImage.Location = new System.Drawing.Point(6, 20);
+            this.pcImage.Name = "pcImage";
+            this.pcImage.Size = new System.Drawing.Size(188, 187);
+            this.pcImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcImage.TabIndex = 0;
+            this.pcImage.TabStop = false;
             // 
             // gbFollowers
             // 
@@ -192,16 +201,6 @@
             this.gbFollowers.TabIndex = 3;
             this.gbFollowers.TabStop = false;
             this.gbFollowers.Text = "Followers : ";
-            // 
-            // btnLoadFollowers
-            // 
-            this.btnLoadFollowers.Location = new System.Drawing.Point(6, 16);
-            this.btnLoadFollowers.Name = "btnLoadFollowers";
-            this.btnLoadFollowers.Size = new System.Drawing.Size(251, 23);
-            this.btnLoadFollowers.TabIndex = 1;
-            this.btnLoadFollowers.Text = "Load List Followers";
-            this.btnLoadFollowers.UseVisualStyleBackColor = true;
-            this.btnLoadFollowers.Click += new System.EventHandler(this.btnLoadFollowers_Click);
             // 
             // dgvFollowers
             // 
@@ -236,6 +235,16 @@
             this.Fullname.Name = "Fullname";
             this.Fullname.ReadOnly = true;
             // 
+            // btnLoadFollowers
+            // 
+            this.btnLoadFollowers.Location = new System.Drawing.Point(6, 16);
+            this.btnLoadFollowers.Name = "btnLoadFollowers";
+            this.btnLoadFollowers.Size = new System.Drawing.Size(251, 23);
+            this.btnLoadFollowers.TabIndex = 1;
+            this.btnLoadFollowers.Text = "Load List Followers";
+            this.btnLoadFollowers.UseVisualStyleBackColor = true;
+            this.btnLoadFollowers.Click += new System.EventHandler(this.btnLoadFollowers_Click);
+            // 
             // gbFollowings
             // 
             this.gbFollowings.Controls.Add(this.dgvFollowings);
@@ -246,7 +255,7 @@
             this.gbFollowings.Size = new System.Drawing.Size(264, 527);
             this.gbFollowings.TabIndex = 3;
             this.gbFollowings.TabStop = false;
-            this.gbFollowings.Text = "Followers : ";
+            this.gbFollowings.Text = "Followings : ";
             // 
             // dgvFollowings
             // 
@@ -291,11 +300,95 @@
             this.btnLoadListFollowings.UseVisualStyleBackColor = true;
             this.btnLoadListFollowings.Click += new System.EventHandler(this.btnLoadListFollowings_Click);
             // 
+            // gbFollowAndUnFollow
+            // 
+            this.gbFollowAndUnFollow.Controls.Add(this.label5);
+            this.gbFollowAndUnFollow.Controls.Add(this.btnStartProcessUnfollow);
+            this.gbFollowAndUnFollow.Controls.Add(this.label4);
+            this.gbFollowAndUnFollow.Controls.Add(this.btnFollows);
+            this.gbFollowAndUnFollow.Controls.Add(this.btnUnfollows);
+            this.gbFollowAndUnFollow.Controls.Add(this.txtUsernameForFollowAndUnFollow);
+            this.gbFollowAndUnFollow.Controls.Add(this.label3);
+            this.gbFollowAndUnFollow.Enabled = false;
+            this.gbFollowAndUnFollow.Location = new System.Drawing.Point(209, 12);
+            this.gbFollowAndUnFollow.Name = "gbFollowAndUnFollow";
+            this.gbFollowAndUnFollow.Size = new System.Drawing.Size(337, 144);
+            this.gbFollowAndUnFollow.TabIndex = 4;
+            this.gbFollowAndUnFollow.TabStop = false;
+            this.gbFollowAndUnFollow.Text = "Follow / Un Follow : ";
+            // 
+            // txtUsernameForFollowAndUnFollow
+            // 
+            this.txtUsernameForFollowAndUnFollow.Location = new System.Drawing.Point(73, 22);
+            this.txtUsernameForFollowAndUnFollow.Name = "txtUsernameForFollowAndUnFollow";
+            this.txtUsernameForFollowAndUnFollow.Size = new System.Drawing.Size(258, 21);
+            this.txtUsernameForFollowAndUnFollow.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Username :";
+            // 
+            // btnUnfollows
+            // 
+            this.btnUnfollows.ForeColor = System.Drawing.Color.Firebrick;
+            this.btnUnfollows.Location = new System.Drawing.Point(208, 49);
+            this.btnUnfollows.Name = "btnUnfollows";
+            this.btnUnfollows.Size = new System.Drawing.Size(123, 23);
+            this.btnUnfollows.TabIndex = 1;
+            this.btnUnfollows.Text = "Un Follow";
+            this.btnUnfollows.UseVisualStyleBackColor = true;
+            this.btnUnfollows.Click += new System.EventHandler(this.btnUnfollows_Click);
+            // 
+            // btnFollows
+            // 
+            this.btnFollows.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnFollows.Location = new System.Drawing.Point(73, 49);
+            this.btnFollows.Name = "btnFollows";
+            this.btnFollows.Size = new System.Drawing.Size(129, 23);
+            this.btnFollows.TabIndex = 1;
+            this.btnFollows.Text = "Follow";
+            this.btnFollows.UseVisualStyleBackColor = true;
+            this.btnFollows.Click += new System.EventHandler(this.btnFollows_Click);
+            // 
+            // label4
+            // 
+            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label4.Location = new System.Drawing.Point(6, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(325, 18);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "_________________________________________________________";
+            // 
+            // btnStartProcessUnfollow
+            // 
+            this.btnStartProcessUnfollow.Location = new System.Drawing.Point(9, 113);
+            this.btnStartProcessUnfollow.Name = "btnStartProcessUnfollow";
+            this.btnStartProcessUnfollow.Size = new System.Drawing.Size(322, 23);
+            this.btnStartProcessUnfollow.TabIndex = 3;
+            this.btnStartProcessUnfollow.Text = "Start Process";
+            this.btnStartProcessUnfollow.UseVisualStyleBackColor = true;
+            this.btnStartProcessUnfollow.Click += new System.EventHandler(this.btnStartProcessUnfollow_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(214, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Unfollow those who have not followed . . . ";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
+            this.Controls.Add(this.gbFollowAndUnFollow);
             this.Controls.Add(this.gbFollowings);
             this.Controls.Add(this.gbFollowers);
             this.Controls.Add(this.gbImageProfile);
@@ -315,6 +408,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFollowers)).EndInit();
             this.gbFollowings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFollowings)).EndInit();
+            this.gbFollowAndUnFollow.ResumeLayout(false);
+            this.gbFollowAndUnFollow.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -343,6 +438,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button btnLoadListFollowings;
+        private System.Windows.Forms.GroupBox gbFollowAndUnFollow;
+        private System.Windows.Forms.Button btnFollows;
+        private System.Windows.Forms.Button btnUnfollows;
+        private System.Windows.Forms.TextBox txtUsernameForFollowAndUnFollow;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnStartProcessUnfollow;
     }
 }
 
