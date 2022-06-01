@@ -1,6 +1,6 @@
 ﻿namespace BotInstagram
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.gbCommand = new System.Windows.Forms.GroupBox();
             this.gbLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,17 +94,30 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // Form1
+            // gbCommand
+            // 
+            this.gbCommand.Enabled = false;
+            this.gbCommand.Location = new System.Drawing.Point(218, 12);
+            this.gbCommand.Name = "gbCommand";
+            this.gbCommand.Size = new System.Drawing.Size(754, 144);
+            this.gbCommand.TabIndex = 1;
+            this.gbCommand.TabStop = false;
+            this.gbCommand.Text = "Commands : ";
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
+            this.Controls.Add(this.gbCommand);
             this.Controls.Add(this.gbLogin);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Instagram Robot";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.gbLogin.ResumeLayout(false);
             this.gbLogin.PerformLayout();
             this.ResumeLayout(false);
@@ -118,6 +132,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.GroupBox gbCommand;
     }
 }
 
