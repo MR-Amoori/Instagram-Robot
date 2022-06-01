@@ -42,13 +42,9 @@
             this.pcImage = new System.Windows.Forms.PictureBox();
             this.gbFollowers = new System.Windows.Forms.GroupBox();
             this.dgvFollowers = new System.Windows.Forms.DataGridView();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLoadFollowers = new System.Windows.Forms.Button();
             this.gbFollowings = new System.Windows.Forms.GroupBox();
             this.dgvFollowings = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLoadListFollowings = new System.Windows.Forms.Button();
             this.gbFollowAndUnFollow = new System.Windows.Forms.GroupBox();
             this.txtUsernameForFollowAndUnFollow = new System.Windows.Forms.TextBox();
@@ -58,6 +54,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnStartProcessUnfollow = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtAwait = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Numberw = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -211,6 +215,7 @@
             this.dgvFollowers.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvFollowers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFollowers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Number,
             this.Username,
             this.Fullname});
             this.dgvFollowers.Location = new System.Drawing.Point(6, 45);
@@ -219,21 +224,6 @@
             this.dgvFollowers.RowHeadersVisible = false;
             this.dgvFollowers.Size = new System.Drawing.Size(251, 476);
             this.dgvFollowers.TabIndex = 2;
-            // 
-            // Username
-            // 
-            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Username.HeaderText = "UserName";
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            this.Username.Width = 81;
-            // 
-            // Fullname
-            // 
-            this.Fullname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Fullname.HeaderText = "Full Name";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
             // 
             // btnLoadFollowers
             // 
@@ -266,6 +256,7 @@
             this.dgvFollowings.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvFollowings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFollowings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Numberw,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.dgvFollowings.Location = new System.Drawing.Point(6, 45);
@@ -274,21 +265,6 @@
             this.dgvFollowings.RowHeadersVisible = false;
             this.dgvFollowings.Size = new System.Drawing.Size(251, 476);
             this.dgvFollowings.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn1.HeaderText = "UserName";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 81;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Full Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // btnLoadListFollowings
             // 
@@ -302,11 +278,13 @@
             // 
             // gbFollowAndUnFollow
             // 
+            this.gbFollowAndUnFollow.Controls.Add(this.label6);
             this.gbFollowAndUnFollow.Controls.Add(this.label5);
             this.gbFollowAndUnFollow.Controls.Add(this.btnStartProcessUnfollow);
             this.gbFollowAndUnFollow.Controls.Add(this.label4);
             this.gbFollowAndUnFollow.Controls.Add(this.btnFollows);
             this.gbFollowAndUnFollow.Controls.Add(this.btnUnfollows);
+            this.gbFollowAndUnFollow.Controls.Add(this.txtAwait);
             this.gbFollowAndUnFollow.Controls.Add(this.txtUsernameForFollowAndUnFollow);
             this.gbFollowAndUnFollow.Controls.Add(this.label3);
             this.gbFollowAndUnFollow.Enabled = false;
@@ -383,6 +361,72 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Unfollow those who have not followed . . . ";
             // 
+            // txtAwait
+            // 
+            this.txtAwait.Location = new System.Drawing.Point(232, 93);
+            this.txtAwait.Multiline = true;
+            this.txtAwait.Name = "txtAwait";
+            this.txtAwait.Size = new System.Drawing.Size(71, 17);
+            this.txtAwait.TabIndex = 0;
+            this.txtAwait.Text = "20000";
+            this.txtAwait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAwait.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAwait_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(306, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "ms";
+            // 
+            // Number
+            // 
+            this.Number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Number.HeaderText = "*";
+            this.Number.Name = "Number";
+            this.Number.ReadOnly = true;
+            this.Number.Width = 5;
+            // 
+            // Username
+            // 
+            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Username.HeaderText = "UserName";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            this.Username.Width = 81;
+            // 
+            // Fullname
+            // 
+            this.Fullname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Fullname.HeaderText = "Full Name";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            // 
+            // Numberw
+            // 
+            this.Numberw.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Numberw.HeaderText = "*";
+            this.Numberw.Name = "Numberw";
+            this.Numberw.ReadOnly = true;
+            this.Numberw.Width = 5;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn1.HeaderText = "UserName";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 81;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Full Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,12 +475,8 @@
         private System.Windows.Forms.GroupBox gbFollowers;
         private System.Windows.Forms.Button btnLoadFollowers;
         private System.Windows.Forms.DataGridView dgvFollowers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.GroupBox gbFollowings;
         private System.Windows.Forms.DataGridView dgvFollowings;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button btnLoadListFollowings;
         private System.Windows.Forms.GroupBox gbFollowAndUnFollow;
         private System.Windows.Forms.Button btnFollows;
@@ -446,6 +486,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnStartProcessUnfollow;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtAwait;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Numberw;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }
 

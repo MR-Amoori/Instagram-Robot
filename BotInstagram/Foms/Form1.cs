@@ -30,7 +30,7 @@ namespace BotInstagram
         private void frmMain_Load(object sender, EventArgs e)
         {
             // Default
-            txtUsername.Text = "Khoderoyawwa";
+            txtUsername.Text = "test_courses_bar";
             txtPassword.Text = "test12";
         }
 
@@ -101,10 +101,12 @@ namespace BotInstagram
         private async void btnLoadFollowers_Click(object sender, EventArgs e)
         {
             dgvFollowers.Rows.Clear();
-            var followers = await ctx.api.UserProcessor.GetCurrentUserFollowersAsync(PaginationParameters.MaxPagesToLoad(1));
+            var followers = await ctx.api.UserProcessor.GetCurrentUserFollowersAsync(PaginationParameters.Empty);
+            int count = 1;
             foreach (var item in followers.Value)
             {
-                dgvFollowers.Rows.Add(item.UserName, item.FullName);
+                dgvFollowers.Rows.Add(count, item.UserName, item.FullName);
+                count++;
             }
         }
 
@@ -113,10 +115,12 @@ namespace BotInstagram
             dgvFollowings.Rows.Clear();
             // string username = ctx.api.GetLoggedUser().UserName;
             var username = await ctx.api.UserProcessor.GetCurrentUserAsync();
-            var followings = await ctx.api.UserProcessor.GetUserFollowingAsync(username.Value.UserName, PaginationParameters.MaxPagesToLoad(1));
+            var followings = await ctx.api.UserProcessor.GetUserFollowingAsync(username.Value.UserName, PaginationParameters.Empty);
+            int count = 1;
             foreach (var item in followings.Value)
             {
-                dgvFollowings.Rows.Add(item.UserName, item.FullName);
+                dgvFollowings.Rows.Add(count, item.UserName, item.FullName);
+                count++;
             }
         }
 
@@ -129,6 +133,7 @@ namespace BotInstagram
                 if (result.Succeeded)
                 {
                     MessageBox.Show("Follow !");
+                    btnLoadListFollowings.PerformClick();
                 }
                 else
                 {
@@ -151,6 +156,7 @@ namespace BotInstagram
                 if (result.Succeeded)
                 {
                     MessageBox.Show("Un Follow !");
+                    btnLoadListFollowings.PerformClick();
                 }
                 else
                 {
@@ -169,7 +175,7 @@ namespace BotInstagram
             var followings = await ctx.api.UserProcessor.GetUserFollowingAsync(txtUsername.Text, PaginationParameters.Empty);
             foreach (var item in followings.Value)
             {
-                var followingsUser = await ctx.api.UserProcessor.GetUserFollowingAsync(item.UserName, PaginationParameters.Empty);
+                var followingsUser = await ctx.api.UserProcessor.GetUserFollowingAsync(item.UserName, PaginationParameters.MaxPagesToLoad(10));
                 if (followingsUser.Succeeded)
                 {
                     if (followingsUser.Value.Any(f => f.UserName.Contains(txtUsername.Text)))
@@ -188,10 +194,17 @@ namespace BotInstagram
 
         private Task Patience()
         {
+            int await = Convert.ToInt32(txtAwait.Text);
             return Task.Run(() =>
             {
-                System.Threading.Thread.Sleep(30000);
+                System.Threading.Thread.Sleep(await);
             });
+        }
+
+        private void txtAwait_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9'))
+                e.Handled = true;
         }
 
 
