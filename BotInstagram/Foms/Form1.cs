@@ -1,4 +1,5 @@
-﻿using InstagramApiSharp.API;
+﻿using InstagramApiSharp;
+using InstagramApiSharp.API;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Logger;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +56,10 @@ namespace BotInstagram
             {
                 gbLogin.Enabled = false;
                 gbCommand.Enabled = true;
+                gbImageProfile.Enabled = true;
+                pcImage.Load(ctx.api.GetLoggedUser().LoggedInUser.ProfilePicUrl);
+                gbFollowers.Enabled = true;
+                gbFollowings.Enabled = true;
             }
             else
             {
@@ -66,6 +72,51 @@ namespace BotInstagram
         private void btnEditProfile_Click(object sender, EventArgs e)
         {
             (new Foms.frmEditProfile()).ShowDialog();
+        }
+
+        private async void btnRemoveImage_Click(object sender, EventArgs e)
+        {
+            var result = await ctx.api.AccountProcessor.RemoveProfilePictureAsync();
+            if (result.Succeeded)
+            {
+                pcImage.Image = null;
+            }
+        }
+
+        private async void btnChangeImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                var picByte = File.ReadAllBytes(op.FileName);
+                var result = await ctx.api.AccountProcessor.ChangeProfilePictureAsync(picByte);
+                if (result.Succeeded)
+                {
+                    pcImage.ImageLocation = op.FileName;
+                }
+            }
+        }
+
+        private async void btnLoadFollowers_Click(object sender, EventArgs e)
+        {
+            dgvFollowers.Rows.Clear();
+            var followers = await ctx.api.UserProcessor.GetCurrentUserFollowersAsync(PaginationParameters.MaxPagesToLoad(1));
+            foreach (var item in followers.Value)
+            {
+                dgvFollowers.Rows.Add(item.UserName, item.FullName);
+            }
+        }
+
+        private async void btnLoadListFollowings_Click(object sender, EventArgs e)
+        {
+            dgvFollowings.Rows.Clear();
+            // string username = ctx.api.GetLoggedUser().UserName;
+            var username = await ctx.api.UserProcessor.GetCurrentUserAsync();
+            var followings = await ctx.api.UserProcessor.GetUserFollowingAsync(username.Value.UserName, PaginationParameters.MaxPagesToLoad(1));
+            foreach (var item in followings.Value)
+            {
+                dgvFollowings.Rows.Add(item.UserName, item.FullName);
+            }
         }
     }
 }
