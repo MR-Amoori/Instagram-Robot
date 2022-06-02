@@ -90,6 +90,12 @@
             this.txtCaptionStory = new System.Windows.Forms.TextBox();
             this.btnStosryPhoto = new System.Windows.Forms.Button();
             this.btnStosryVideo = new System.Windows.Forms.Button();
+            this.gbPost = new System.Windows.Forms.GroupBox();
+            this.txtCaptionPost = new System.Windows.Forms.TextBox();
+            this.btnSendImagePost = new System.Windows.Forms.Button();
+            this.btnSendVideoPost = new System.Windows.Forms.Button();
+            this.txtUsernameTag = new System.Windows.Forms.TextBox();
+            this.txtLocationPost = new System.Windows.Forms.TextBox();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -105,6 +111,7 @@
             this.gbDirect.SuspendLayout();
             this.gbShowPostes.SuspendLayout();
             this.gbStory.SuspendLayout();
+            this.gbPost.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLogin
@@ -742,11 +749,73 @@
             this.btnStosryVideo.UseVisualStyleBackColor = true;
             this.btnStosryVideo.Click += new System.EventHandler(this.btnStosryVideo_Click);
             // 
+            // gbPost
+            // 
+            this.gbPost.Controls.Add(this.txtLocationPost);
+            this.gbPost.Controls.Add(this.txtUsernameTag);
+            this.gbPost.Controls.Add(this.btnSendVideoPost);
+            this.gbPost.Controls.Add(this.btnSendImagePost);
+            this.gbPost.Controls.Add(this.txtCaptionPost);
+            this.gbPost.Enabled = false;
+            this.gbPost.Location = new System.Drawing.Point(552, 413);
+            this.gbPost.Name = "gbPost";
+            this.gbPost.Size = new System.Drawing.Size(206, 276);
+            this.gbPost.TabIndex = 10;
+            this.gbPost.TabStop = false;
+            this.gbPost.Text = "Post : ";
+            // 
+            // txtCaptionPost
+            // 
+            this.txtCaptionPost.Location = new System.Drawing.Point(6, 73);
+            this.txtCaptionPost.Multiline = true;
+            this.txtCaptionPost.Name = "txtCaptionPost";
+            this.txtCaptionPost.Size = new System.Drawing.Size(194, 168);
+            this.txtCaptionPost.TabIndex = 0;
+            this.txtCaptionPost.Text = "Caption ";
+            // 
+            // btnSendImagePost
+            // 
+            this.btnSendImagePost.Location = new System.Drawing.Point(104, 247);
+            this.btnSendImagePost.Name = "btnSendImagePost";
+            this.btnSendImagePost.Size = new System.Drawing.Size(96, 23);
+            this.btnSendImagePost.TabIndex = 1;
+            this.btnSendImagePost.Text = "Photo";
+            this.btnSendImagePost.UseVisualStyleBackColor = true;
+            this.btnSendImagePost.Click += new System.EventHandler(this.btnSendImagePost_Click);
+            // 
+            // btnSendVideoPost
+            // 
+            this.btnSendVideoPost.Location = new System.Drawing.Point(7, 247);
+            this.btnSendVideoPost.Name = "btnSendVideoPost";
+            this.btnSendVideoPost.Size = new System.Drawing.Size(91, 23);
+            this.btnSendVideoPost.TabIndex = 1;
+            this.btnSendVideoPost.Text = "Video";
+            this.btnSendVideoPost.UseVisualStyleBackColor = true;
+            // 
+            // txtUsernameTag
+            // 
+            this.txtUsernameTag.Location = new System.Drawing.Point(7, 18);
+            this.txtUsernameTag.Name = "txtUsernameTag";
+            this.txtUsernameTag.Size = new System.Drawing.Size(193, 21);
+            this.txtUsernameTag.TabIndex = 2;
+            this.txtUsernameTag.Text = "User Tags";
+            this.txtUsernameTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtLocationPost
+            // 
+            this.txtLocationPost.Location = new System.Drawing.Point(7, 45);
+            this.txtLocationPost.Name = "txtLocationPost";
+            this.txtLocationPost.Size = new System.Drawing.Size(193, 21);
+            this.txtLocationPost.TabIndex = 3;
+            this.txtLocationPost.Text = "Location";
+            this.txtLocationPost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
+            this.Controls.Add(this.gbPost);
             this.Controls.Add(this.gbStory);
             this.Controls.Add(this.gbShowPostes);
             this.Controls.Add(this.gbDirect);
@@ -784,6 +853,8 @@
             this.gbShowPostes.PerformLayout();
             this.gbStory.ResumeLayout(false);
             this.gbStory.PerformLayout();
+            this.gbPost.ResumeLayout(false);
+            this.gbPost.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -852,6 +923,12 @@
         private System.Windows.Forms.Button btnStosryVideo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtCaptionStory;
+        private System.Windows.Forms.GroupBox gbPost;
+        private System.Windows.Forms.TextBox txtUsernameTag;
+        private System.Windows.Forms.Button btnSendVideoPost;
+        private System.Windows.Forms.Button btnSendImagePost;
+        private System.Windows.Forms.TextBox txtCaptionPost;
+        private System.Windows.Forms.TextBox txtLocationPost;
     }
 }
 

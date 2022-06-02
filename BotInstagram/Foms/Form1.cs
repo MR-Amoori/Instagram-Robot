@@ -67,6 +67,7 @@ namespace BotInstagram
                 gbDirect.Enabled = true;
                 gbShowPostes.Enabled = true;
                 gbStory.Enabled = true;
+                gbPost.Enabled = true;
             }
             else
             {
@@ -266,6 +267,7 @@ namespace BotInstagram
             btnLogin.Enabled = true;
             gbShowPostes.Enabled = false;
             gbStory.Enabled = false;
+            gbPost.Enabled = false;
         }
 
         private async void btnSendMessage_Click(object sender, EventArgs e)
@@ -359,36 +361,36 @@ namespace BotInstagram
             txtUsernameForFollowAndUnFollow.Text = dgvFollowers.SelectedCells[0].Value.ToString();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
+        //private async void button1_Click(object sender, EventArgs e)
+        //{
 
-            //var mds = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
-            //if (mds.Succeeded)
-            //{
-            //    var first = mds.Value[188];
+        //var mds = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
+        //if (mds.Succeeded)
+        //{
+        //    var first = mds.Value[188];
 
-            //    //foreach (var item in mds.Value)
-            //    //{
-            //        var media = await ctx.api.MediaProcessor.GetMediaLikersAsync(first.InstaIdentifier);
-            //        foreach (var it in media.Value)
-            //        {
-            //            dgvBlockUsers.Rows.Add(it.UserName, it.FullName);
-            //        }
-            //   // }
-            //}
+        //    //foreach (var item in mds.Value)
+        //    //{
+        //        var media = await ctx.api.MediaProcessor.GetMediaLikersAsync(first.InstaIdentifier);
+        //        foreach (var it in media.Value)
+        //        {
+        //            dgvBlockUsers.Rows.Add(it.UserName, it.FullName);
+        //        }
+        //   // }
+        //}
 
-            //var posts = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
+        //var posts = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
 
-            //var post = posts.Value[65];
+        //var post = posts.Value[65];
 
-            //var likers = await ctx.api.MediaProcessor.GetMediaLikersAsync(post.InstaIdentifier);
+        //var likers = await ctx.api.MediaProcessor.GetMediaLikersAsync(post.InstaIdentifier);
 
-            //foreach (var liker in likers.Value)
-            //{
-            //    dgvBlockUsers.Rows.Add(liker.UserName, liker.FullName);
-            //}
+        //foreach (var liker in likers.Value)
+        //{
+        //    dgvBlockUsers.Rows.Add(liker.UserName, liker.FullName);
+        //}
 
-        }
+        //  }
 
         private async void btnStosryPhoto_Click(object sender, EventArgs e)
         {
@@ -437,6 +439,35 @@ namespace BotInstagram
             else
             {
                 MessageBox.Show("No Sended Story !\n" + result.Info.Message);
+            }
+        }
+
+        private async void btnSendImagePost_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files|*.bmp;*.jpeg;*.jpg;*.png;*.gif";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                var uploadImage = new InstaImageUpload()
+                {
+                    Height = 1080,
+                    Width = 1080,
+                    Uri = op.FileName
+                };
+
+                double x = 0.5, y = 0.5;
+                uploadImage.UserTags.Add(new InstaUserTagUpload() { Username = txtUsernameTag.Text, X = x, Y = y });
+
+                var result = await ctx.api.MediaProcessor.UploadPhotoAsync(uploadImage, txtCaptionStory.Text);
+
+                if (result.Succeeded)
+                {
+                    MessageBox.Show("Post Sended ...");
+                }
+                else
+                {
+                    MessageBox.Show("No Sended Post !\n" + result.Info.Message);
+                }
             }
         }
 
