@@ -66,6 +66,7 @@ namespace BotInstagram
                 btnLogout.Enabled = true;
                 gbDirect.Enabled = true;
                 gbShowPostes.Enabled = true;
+                gbStory.Enabled = true;
             }
             else
             {
@@ -262,8 +263,9 @@ namespace BotInstagram
             gbBlocks.Enabled = false;
             btnLogout.Enabled = false;
             gbDirect.Enabled = false;
-            gbLogin.Enabled = true;
+            btnLogin.Enabled = true;
             gbShowPostes.Enabled = false;
+            gbStory.Enabled = false;
         }
 
         private async void btnSendMessage_Click(object sender, EventArgs e)
@@ -338,6 +340,104 @@ namespace BotInstagram
         private void btnActivities_Click(object sender, EventArgs e)
         {
             new Foms.frmActivity().ShowDialog();
+        }
+
+        private void btnShowPostes_Click(object sender, EventArgs e)
+        {
+            Foms.frmShowPost frm = new Foms.frmShowPost();
+            frm.UserName = txtUsernamePostes.Text.Trim();
+            frm.ShowDialog();
+        }
+
+        private void dgvFollowings_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtUsernameForFollowAndUnFollow.Text = dgvFollowings.SelectedCells[0].Value.ToString();
+        }
+
+        private void dgvFollowers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtUsernameForFollowAndUnFollow.Text = dgvFollowers.SelectedCells[0].Value.ToString();
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+
+            //var mds = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
+            //if (mds.Succeeded)
+            //{
+            //    var first = mds.Value[188];
+
+            //    //foreach (var item in mds.Value)
+            //    //{
+            //        var media = await ctx.api.MediaProcessor.GetMediaLikersAsync(first.InstaIdentifier);
+            //        foreach (var it in media.Value)
+            //        {
+            //            dgvBlockUsers.Rows.Add(it.UserName, it.FullName);
+            //        }
+            //   // }
+            //}
+
+            //var posts = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
+
+            //var post = posts.Value[65];
+
+            //var likers = await ctx.api.MediaProcessor.GetMediaLikersAsync(post.InstaIdentifier);
+
+            //foreach (var liker in likers.Value)
+            //{
+            //    dgvBlockUsers.Rows.Add(liker.UserName, liker.FullName);
+            //}
+
+        }
+
+        private async void btnStosryPhoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files|*.bmp;*.jpeg;*.jpg;*.png;*.gif";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                var image = new InstaImage()
+                {
+                    Uri = op.FileName
+                };
+                var result = await ctx.api.StoryProcessor.UploadStoryPhotoAsync(image, txtCaptionStory.Text);
+                if (result.Succeeded)
+                {
+                    MessageBox.Show("Story Sended ...");
+                }
+                else
+                {
+                    MessageBox.Show("No Sended Story !\n" + result.Info.Message);
+                }
+            }
+        }
+
+        private async void btnStosryVideo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select Video";
+            op.ShowDialog();
+            string videoUri = op.FileName;
+            OpenFileDialog opImage = new OpenFileDialog();
+            opImage.Title = "Select Image For Thumbnail";
+            opImage.ShowDialog();
+            string imageUri = opImage.FileName;
+
+            var video = new InstaVideoUpload()
+            {
+                Video = new InstaVideo() { Uri = videoUri, Height = 0, Width = 0 },
+                VideoThumbnail = new InstaImage() { Uri = imageUri, Height = 0, Width = 0 }
+            };
+
+            var result = await ctx.api.StoryProcessor.UploadStoryVideoAsync(video, txtCaptionStory.Text);
+            if (result.Succeeded)
+            {
+                MessageBox.Show("Story Sended ...");
+            }
+            else
+            {
+                MessageBox.Show("No Sended Story !\n" + result.Info.Message);
+            }
         }
 
 

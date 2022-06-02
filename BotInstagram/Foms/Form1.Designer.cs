@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbCommand = new System.Windows.Forms.GroupBox();
+            this.btnActivities = new System.Windows.Forms.Button();
             this.btnEditProfile = new System.Windows.Forms.Button();
             this.gbImageProfile = new System.Windows.Forms.GroupBox();
             this.btnChangeImage = new System.Windows.Forms.Button();
@@ -80,11 +81,15 @@
             this.txtMessageDirect = new System.Windows.Forms.TextBox();
             this.txtDirect = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnActivities = new System.Windows.Forms.Button();
             this.gbShowPostes = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtUsernamePostes = new System.Windows.Forms.TextBox();
             this.btnShowPostes = new System.Windows.Forms.Button();
+            this.txtUsernamePostes = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.gbStory = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtCaptionStory = new System.Windows.Forms.TextBox();
+            this.btnStosryPhoto = new System.Windows.Forms.Button();
+            this.btnStosryVideo = new System.Windows.Forms.Button();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -99,6 +104,7 @@
             this.toolStrip1.SuspendLayout();
             this.gbDirect.SuspendLayout();
             this.gbShowPostes.SuspendLayout();
+            this.gbStory.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLogin
@@ -170,6 +176,16 @@
             this.gbCommand.TabIndex = 1;
             this.gbCommand.TabStop = false;
             this.gbCommand.Text = "Commands : ";
+            // 
+            // btnActivities
+            // 
+            this.btnActivities.Location = new System.Drawing.Point(111, 20);
+            this.btnActivities.Name = "btnActivities";
+            this.btnActivities.Size = new System.Drawing.Size(97, 23);
+            this.btnActivities.TabIndex = 1;
+            this.btnActivities.Text = "Activities";
+            this.btnActivities.UseVisualStyleBackColor = true;
+            this.btnActivities.Click += new System.EventHandler(this.btnActivities_Click);
             // 
             // btnEditProfile
             // 
@@ -253,6 +269,7 @@
             this.dgvFollowers.RowHeadersVisible = false;
             this.dgvFollowers.Size = new System.Drawing.Size(251, 476);
             this.dgvFollowers.TabIndex = 2;
+            this.dgvFollowers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFollowers_CellDoubleClick);
             // 
             // Number
             // 
@@ -317,6 +334,7 @@
             this.dgvFollowings.RowHeadersVisible = false;
             this.dgvFollowings.Size = new System.Drawing.Size(251, 476);
             this.dgvFollowings.TabIndex = 2;
+            this.dgvFollowings.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFollowings_CellDoubleClick);
             // 
             // Numberw
             // 
@@ -635,16 +653,6 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Username :";
             // 
-            // btnActivities
-            // 
-            this.btnActivities.Location = new System.Drawing.Point(111, 20);
-            this.btnActivities.Name = "btnActivities";
-            this.btnActivities.Size = new System.Drawing.Size(97, 23);
-            this.btnActivities.TabIndex = 1;
-            this.btnActivities.Text = "Activities";
-            this.btnActivities.UseVisualStyleBackColor = true;
-            this.btnActivities.Click += new System.EventHandler(this.btnActivities_Click);
-            // 
             // gbShowPostes
             // 
             this.gbShowPostes.Controls.Add(this.btnShowPostes);
@@ -658,6 +666,23 @@
             this.gbShowPostes.TabStop = false;
             this.gbShowPostes.Text = "Show Posts : ";
             // 
+            // btnShowPostes
+            // 
+            this.btnShowPostes.Location = new System.Drawing.Point(6, 48);
+            this.btnShowPostes.Name = "btnShowPostes";
+            this.btnShowPostes.Size = new System.Drawing.Size(187, 23);
+            this.btnShowPostes.TabIndex = 2;
+            this.btnShowPostes.Text = "Show Postes";
+            this.btnShowPostes.UseVisualStyleBackColor = true;
+            this.btnShowPostes.Click += new System.EventHandler(this.btnShowPostes_Click);
+            // 
+            // txtUsernamePostes
+            // 
+            this.txtUsernamePostes.Location = new System.Drawing.Point(67, 23);
+            this.txtUsernamePostes.Name = "txtUsernamePostes";
+            this.txtUsernamePostes.Size = new System.Drawing.Size(127, 21);
+            this.txtUsernamePostes.TabIndex = 1;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -667,27 +692,62 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Username :";
             // 
-            // txtUsernamePostes
+            // gbStory
             // 
-            this.txtUsernamePostes.Location = new System.Drawing.Point(67, 23);
-            this.txtUsernamePostes.Name = "txtUsernamePostes";
-            this.txtUsernamePostes.Size = new System.Drawing.Size(127, 21);
-            this.txtUsernamePostes.TabIndex = 1;
+            this.gbStory.Controls.Add(this.label9);
+            this.gbStory.Controls.Add(this.txtCaptionStory);
+            this.gbStory.Controls.Add(this.btnStosryPhoto);
+            this.gbStory.Controls.Add(this.btnStosryVideo);
+            this.gbStory.Enabled = false;
+            this.gbStory.Location = new System.Drawing.Point(552, 86);
+            this.gbStory.Name = "gbStory";
+            this.gbStory.Size = new System.Drawing.Size(200, 70);
+            this.gbStory.TabIndex = 9;
+            this.gbStory.TabStop = false;
+            this.gbStory.Text = "Story : ";
             // 
-            // btnShowPostes
+            // label9
             // 
-            this.btnShowPostes.Location = new System.Drawing.Point(6, 48);
-            this.btnShowPostes.Name = "btnShowPostes";
-            this.btnShowPostes.Size = new System.Drawing.Size(187, 23);
-            this.btnShowPostes.TabIndex = 2;
-            this.btnShowPostes.Text = "Show Postes";
-            this.btnShowPostes.UseVisualStyleBackColor = true;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Caption :";
+            // 
+            // txtCaptionStory
+            // 
+            this.txtCaptionStory.Location = new System.Drawing.Point(67, 17);
+            this.txtCaptionStory.Name = "txtCaptionStory";
+            this.txtCaptionStory.Size = new System.Drawing.Size(126, 21);
+            this.txtCaptionStory.TabIndex = 1;
+            // 
+            // btnStosryPhoto
+            // 
+            this.btnStosryPhoto.Location = new System.Drawing.Point(104, 40);
+            this.btnStosryPhoto.Name = "btnStosryPhoto";
+            this.btnStosryPhoto.Size = new System.Drawing.Size(89, 23);
+            this.btnStosryPhoto.TabIndex = 0;
+            this.btnStosryPhoto.Text = "Photo";
+            this.btnStosryPhoto.UseVisualStyleBackColor = true;
+            this.btnStosryPhoto.Click += new System.EventHandler(this.btnStosryPhoto_Click);
+            // 
+            // btnStosryVideo
+            // 
+            this.btnStosryVideo.Location = new System.Drawing.Point(6, 40);
+            this.btnStosryVideo.Name = "btnStosryVideo";
+            this.btnStosryVideo.Size = new System.Drawing.Size(92, 23);
+            this.btnStosryVideo.TabIndex = 0;
+            this.btnStosryVideo.Text = "Video";
+            this.btnStosryVideo.UseVisualStyleBackColor = true;
+            this.btnStosryVideo.Click += new System.EventHandler(this.btnStosryVideo_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
+            this.Controls.Add(this.gbStory);
             this.Controls.Add(this.gbShowPostes);
             this.Controls.Add(this.gbDirect);
             this.Controls.Add(this.toolStrip1);
@@ -722,6 +782,8 @@
             this.gbDirect.PerformLayout();
             this.gbShowPostes.ResumeLayout(false);
             this.gbShowPostes.PerformLayout();
+            this.gbStory.ResumeLayout(false);
+            this.gbStory.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -785,6 +847,11 @@
         private System.Windows.Forms.Button btnShowPostes;
         private System.Windows.Forms.TextBox txtUsernamePostes;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox gbStory;
+        private System.Windows.Forms.Button btnStosryPhoto;
+        private System.Windows.Forms.Button btnStosryVideo;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtCaptionStory;
     }
 }
 
