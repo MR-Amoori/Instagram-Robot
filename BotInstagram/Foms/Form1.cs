@@ -183,7 +183,7 @@ namespace BotInstagram
             var followings = await ctx.api.UserProcessor.GetUserFollowingAsync(txtUsername.Text, PaginationParameters.Empty);
             foreach (var item in followings.Value)
             {
-                var followingsUser = await ctx.api.UserProcessor.GetUserFollowingAsync(item.UserName, PaginationParameters.MaxPagesToLoad(10));
+                var followingsUser = await ctx.api.UserProcessor.GetUserFollowingAsync(item.UserName, PaginationParameters.Empty);
                 if (followingsUser.Succeeded)
                 {
                     if (followingsUser.Value.Any(f => f.UserName.Contains(txtUsername.Text)))
@@ -198,6 +198,8 @@ namespace BotInstagram
                 }
                 await Patience();
             }
+            btnStartProcessUnfollow.Enabled = true;
+            MessageBox.Show("Finished Process Unfollow ...");
         }
 
         private Task Patience()
