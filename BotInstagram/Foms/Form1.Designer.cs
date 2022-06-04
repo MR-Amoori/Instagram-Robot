@@ -91,11 +91,17 @@
             this.btnStosryPhoto = new System.Windows.Forms.Button();
             this.btnStosryVideo = new System.Windows.Forms.Button();
             this.gbPost = new System.Windows.Forms.GroupBox();
-            this.txtCaptionPost = new System.Windows.Forms.TextBox();
-            this.btnSendImagePost = new System.Windows.Forms.Button();
-            this.btnSendVideoPost = new System.Windows.Forms.Button();
-            this.txtUsernameTag = new System.Windows.Forms.TextBox();
             this.txtLocationPost = new System.Windows.Forms.TextBox();
+            this.txtUsernameTag = new System.Windows.Forms.TextBox();
+            this.btnSendVideoPost = new System.Windows.Forms.Button();
+            this.btnSendImagePost = new System.Windows.Forms.Button();
+            this.txtCaptionPost = new System.Windows.Forms.TextBox();
+            this.gbSearchInPostes = new System.Windows.Forms.GroupBox();
+            this.txtUsernameForSearch = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtTextForSearch = new System.Windows.Forms.TextBox();
+            this.brnSearchTextInSearch = new System.Windows.Forms.Button();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -112,6 +118,7 @@
             this.gbShowPostes.SuspendLayout();
             this.gbStory.SuspendLayout();
             this.gbPost.SuspendLayout();
+            this.gbSearchInPostes.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLogin
@@ -764,14 +771,33 @@
             this.gbPost.TabStop = false;
             this.gbPost.Text = "Post : ";
             // 
-            // txtCaptionPost
+            // txtLocationPost
             // 
-            this.txtCaptionPost.Location = new System.Drawing.Point(6, 73);
-            this.txtCaptionPost.Multiline = true;
-            this.txtCaptionPost.Name = "txtCaptionPost";
-            this.txtCaptionPost.Size = new System.Drawing.Size(194, 168);
-            this.txtCaptionPost.TabIndex = 0;
-            this.txtCaptionPost.Text = "Caption ";
+            this.txtLocationPost.Location = new System.Drawing.Point(7, 45);
+            this.txtLocationPost.Name = "txtLocationPost";
+            this.txtLocationPost.Size = new System.Drawing.Size(193, 21);
+            this.txtLocationPost.TabIndex = 3;
+            this.txtLocationPost.Text = "Location";
+            this.txtLocationPost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtUsernameTag
+            // 
+            this.txtUsernameTag.Location = new System.Drawing.Point(7, 18);
+            this.txtUsernameTag.Name = "txtUsernameTag";
+            this.txtUsernameTag.Size = new System.Drawing.Size(193, 21);
+            this.txtUsernameTag.TabIndex = 2;
+            this.txtUsernameTag.Text = "User Tag";
+            this.txtUsernameTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnSendVideoPost
+            // 
+            this.btnSendVideoPost.Location = new System.Drawing.Point(7, 247);
+            this.btnSendVideoPost.Name = "btnSendVideoPost";
+            this.btnSendVideoPost.Size = new System.Drawing.Size(91, 23);
+            this.btnSendVideoPost.TabIndex = 1;
+            this.btnSendVideoPost.Text = "Video";
+            this.btnSendVideoPost.UseVisualStyleBackColor = true;
+            this.btnSendVideoPost.Click += new System.EventHandler(this.btnSendVideoPost_Click);
             // 
             // btnSendImagePost
             // 
@@ -783,38 +809,78 @@
             this.btnSendImagePost.UseVisualStyleBackColor = true;
             this.btnSendImagePost.Click += new System.EventHandler(this.btnSendImagePost_Click);
             // 
-            // btnSendVideoPost
+            // txtCaptionPost
             // 
-            this.btnSendVideoPost.Location = new System.Drawing.Point(7, 247);
-            this.btnSendVideoPost.Name = "btnSendVideoPost";
-            this.btnSendVideoPost.Size = new System.Drawing.Size(91, 23);
-            this.btnSendVideoPost.TabIndex = 1;
-            this.btnSendVideoPost.Text = "Video";
-            this.btnSendVideoPost.UseVisualStyleBackColor = true;
+            this.txtCaptionPost.Location = new System.Drawing.Point(6, 73);
+            this.txtCaptionPost.Multiline = true;
+            this.txtCaptionPost.Name = "txtCaptionPost";
+            this.txtCaptionPost.Size = new System.Drawing.Size(194, 168);
+            this.txtCaptionPost.TabIndex = 0;
+            this.txtCaptionPost.Text = "Caption ";
             // 
-            // txtUsernameTag
+            // gbSearchInPostes
             // 
-            this.txtUsernameTag.Location = new System.Drawing.Point(7, 18);
-            this.txtUsernameTag.Name = "txtUsernameTag";
-            this.txtUsernameTag.Size = new System.Drawing.Size(193, 21);
-            this.txtUsernameTag.TabIndex = 2;
-            this.txtUsernameTag.Text = "User Tags";
-            this.txtUsernameTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.gbSearchInPostes.Controls.Add(this.brnSearchTextInSearch);
+            this.gbSearchInPostes.Controls.Add(this.txtTextForSearch);
+            this.gbSearchInPostes.Controls.Add(this.txtUsernameForSearch);
+            this.gbSearchInPostes.Controls.Add(this.label11);
+            this.gbSearchInPostes.Controls.Add(this.label10);
+            this.gbSearchInPostes.Enabled = false;
+            this.gbSearchInPostes.Location = new System.Drawing.Point(764, 581);
+            this.gbSearchInPostes.Name = "gbSearchInPostes";
+            this.gbSearchInPostes.Size = new System.Drawing.Size(208, 108);
+            this.gbSearchInPostes.TabIndex = 11;
+            this.gbSearchInPostes.TabStop = false;
+            this.gbSearchInPostes.Text = "Search In Postes : ";
             // 
-            // txtLocationPost
+            // txtUsernameForSearch
             // 
-            this.txtLocationPost.Location = new System.Drawing.Point(7, 45);
-            this.txtLocationPost.Name = "txtLocationPost";
-            this.txtLocationPost.Size = new System.Drawing.Size(193, 21);
-            this.txtLocationPost.TabIndex = 3;
-            this.txtLocationPost.Text = "Location";
-            this.txtLocationPost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtUsernameForSearch.Location = new System.Drawing.Point(75, 20);
+            this.txtUsernameForSearch.Name = "txtUsernameForSearch";
+            this.txtUsernameForSearch.Size = new System.Drawing.Size(127, 21);
+            this.txtUsernameForSearch.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 24);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Username :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(33, 55);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Text :";
+            // 
+            // txtTextForSearch
+            // 
+            this.txtTextForSearch.Location = new System.Drawing.Point(75, 52);
+            this.txtTextForSearch.Name = "txtTextForSearch";
+            this.txtTextForSearch.Size = new System.Drawing.Size(127, 21);
+            this.txtTextForSearch.TabIndex = 0;
+            // 
+            // brnSearchTextInSearch
+            // 
+            this.brnSearchTextInSearch.Location = new System.Drawing.Point(10, 79);
+            this.brnSearchTextInSearch.Name = "brnSearchTextInSearch";
+            this.brnSearchTextInSearch.Size = new System.Drawing.Size(192, 23);
+            this.brnSearchTextInSearch.TabIndex = 1;
+            this.brnSearchTextInSearch.Text = "Search";
+            this.brnSearchTextInSearch.UseVisualStyleBackColor = true;
+            this.brnSearchTextInSearch.Click += new System.EventHandler(this.brnSearchTextInSearch_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
+            this.Controls.Add(this.gbSearchInPostes);
             this.Controls.Add(this.gbPost);
             this.Controls.Add(this.gbStory);
             this.Controls.Add(this.gbShowPostes);
@@ -855,6 +921,8 @@
             this.gbStory.PerformLayout();
             this.gbPost.ResumeLayout(false);
             this.gbPost.PerformLayout();
+            this.gbSearchInPostes.ResumeLayout(false);
+            this.gbSearchInPostes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -929,6 +997,12 @@
         private System.Windows.Forms.Button btnSendImagePost;
         private System.Windows.Forms.TextBox txtCaptionPost;
         private System.Windows.Forms.TextBox txtLocationPost;
+        private System.Windows.Forms.GroupBox gbSearchInPostes;
+        private System.Windows.Forms.Button brnSearchTextInSearch;
+        private System.Windows.Forms.TextBox txtTextForSearch;
+        private System.Windows.Forms.TextBox txtUsernameForSearch;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
 

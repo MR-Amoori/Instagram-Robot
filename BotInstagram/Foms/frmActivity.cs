@@ -48,9 +48,12 @@ namespace BotInstagram.Foms
             {
                 listBox1.Invoke((MethodInvoker)delegate
                 {
-                    listBox1.Items.Add(recentActivity.Value.Items[i].Text);
+                    if (recentActivity.Value.Items[i].Text != null)
+                    {
+                        listBox1.Items.Add(recentActivity.Value.Items[i].Text);
+                    }
                 });
-                backgroundWorker1.ReportProgress(i+1);
+                backgroundWorker1.ReportProgress(i + 1);
             }
         }
     }

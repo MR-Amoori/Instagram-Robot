@@ -68,6 +68,7 @@ namespace BotInstagram
                 gbShowPostes.Enabled = true;
                 gbStory.Enabled = true;
                 gbPost.Enabled = true;
+                gbSearchInPostes.Enabled = true;
             }
             else
             {
@@ -268,6 +269,7 @@ namespace BotInstagram
             gbShowPostes.Enabled = false;
             gbStory.Enabled = false;
             gbPost.Enabled = false;
+            gbSearchInPostes.Enabled = false;
         }
 
         private async void btnSendMessage_Click(object sender, EventArgs e)
@@ -348,6 +350,7 @@ namespace BotInstagram
         {
             Foms.frmShowPost frm = new Foms.frmShowPost();
             frm.UserName = txtUsernamePostes.Text.Trim();
+            frm.Id = 0;
             frm.ShowDialog();
         }
 
@@ -468,6 +471,47 @@ namespace BotInstagram
                 {
                     MessageBox.Show("No Sended Post !\n" + result.Info.Message);
                 }
+            }
+        }
+
+        private void brnSearchTextInSearch_Click(object sender, EventArgs e)
+        {
+            Foms.frmShowPost frm = new Foms.frmShowPost();
+            frm.UserName = txtUsernameForSearch.Text.Trim();
+            frm.TextForSearch = txtTextForSearch.Text;
+            frm.Id = 1;
+            frm.ShowDialog();
+        }
+
+        private async void btnSendVideoPost_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select Video";
+            op.ShowDialog();
+            string videoUri = op.FileName;
+            OpenFileDialog opImage = new OpenFileDialog();
+            opImage.Title = "Select Image For Thumbnail";
+            opImage.ShowDialog();
+            string imageUri = opImage.FileName;
+
+            var video = new InstaVideoUpload()
+            {
+                Video = new InstaVideo() { Uri = videoUri, Height = 0, Width = 0 },
+                VideoThumbnail = new InstaImage() { Uri = imageUri, Height = 0, Width = 0 },
+            };
+
+            double x = 0.5, y = 0.5;
+            video.UserTags.Add(new InstaUserTagUpload() { Username = txtUsernameTag.Text, X = x, Y = y });
+
+            var result = await ctx.api.MediaProcessor.UploadVideoAsync(video,txtCaptionPost.Text);
+           
+            if (result.Succeeded)
+            {
+                MessageBox.Show("Post Sended ...");
+            }
+            else
+            {
+                MessageBox.Show("No Sended Post !\n" + result.Info.Message);
             }
         }
 
