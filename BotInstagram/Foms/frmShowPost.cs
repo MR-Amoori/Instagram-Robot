@@ -25,6 +25,7 @@ namespace BotInstagram.Foms
         {
             this.Text = "Postes " + UserName;
             var userMedias = await ctx.api.UserProcessor.GetUserMediaAsync(UserName, PaginationParameters.Empty);
+            int count = userMedias.Value.Count;
             string html = "";
 
             if (Id == 0)
@@ -54,9 +55,16 @@ namespace BotInstagram.Foms
                          $"</p>" +
                          $"<p>" +
                          $"{item.Caption?.Text}" +
-                         $"</p>"
-                         +
-                         $"</div> </br>";
+                         $"</p>" +
+                         $"</br>";
+
+                        if (item.MediaType == InstagramApiSharp.Classes.Models.InstaMediaType.Video)
+                        {
+                            int countt = item.Videos.Count;
+                            html += $"<a href='{item.Videos[countt - 1].Uri}'>Link Download</a>";
+                        }
+
+                        html += $"</div> </br>";
 
                     }
                     webBrowser1.DocumentText = html;
@@ -97,19 +105,27 @@ namespace BotInstagram.Foms
                                  $"{item.Caption?.Text}" +
                                  $"</p>" +
                                  $"</br>";
-                               
+
                                 if (item.MediaType == InstagramApiSharp.Classes.Models.InstaMediaType.Video)
                                 {
-                                    int count = item.Videos.Count;
-                                    html += $"<a href='{item.Videos[count-1].Uri}'>Link Download</a>";
+                                    int countt = item.Videos.Count;
+                                    html += $"<a href='{item.Videos[countt - 1].Uri}'>Link Download</a>";
                                 }
-                                
-                               html += $"</div> </br>";
+
+                                html += $"</div> </br>";
+                            }
+                            else
+                            {
+                                if (userMedias.Value[count - 1].InstaIdentifier == item.InstaIdentifier)
+                                {
+                                    html += "<p> Not Find ! </p>";
+                                    webBrowser1.DocumentText = html;
+                                }
                             }
                         }
                         else
                         {
-                            html += "<p> Not Find ! </p>";
+                            html += $"</br> <div style='width:100%'> < p> Not Find ! </p> </div>";
                             webBrowser1.DocumentText = html;
                         }
                     }
