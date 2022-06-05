@@ -71,6 +71,7 @@ namespace BotInstagram
                 gbStory.Enabled = true;
                 gbPost.Enabled = true;
                 gbSearchInPostes.Enabled = true;
+                gbDownloadPost.Enabled = true;
             }
             else
             {
@@ -87,8 +88,8 @@ namespace BotInstagram
 
         private async void btnRemoveImage_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Remove Profile ?" , "Wrning !" , MessageBoxButtons.YesNo , MessageBoxIcon.Warning);
-            if ( DialogResult == DialogResult.Yes)
+            MessageBox.Show("Remove Profile ?", "Wrning !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.Yes)
             {
                 var result = await ctx.api.AccountProcessor.RemoveProfilePictureAsync();
                 if (result.Succeeded)
@@ -280,6 +281,7 @@ namespace BotInstagram
             gbStory.Enabled = false;
             gbPost.Enabled = false;
             gbSearchInPostes.Enabled = false;
+            gbDownloadPost.Enabled = false;
         }
 
         private async void btnSendMessage_Click(object sender, EventArgs e)
@@ -482,8 +484,8 @@ namespace BotInstagram
             double x = 0.5, y = 0.5;
             video.UserTags.Add(new InstaUserTagUpload() { Username = txtUsernameTag.Text, X = x, Y = y });
 
-            var result = await ctx.api.MediaProcessor.UploadVideoAsync(video,txtCaptionPost.Text);
-           
+            var result = await ctx.api.MediaProcessor.UploadVideoAsync(video, txtCaptionPost.Text);
+
             if (result.Succeeded)
             {
                 MessageBox.Show("Post Sended ...");
@@ -524,6 +526,13 @@ namespace BotInstagram
             {
                 MessageBox.Show("Not Found !");
             }
+        }
+
+        private void btnGetFollower_Click(object sender, EventArgs e)
+        {
+            Foms.frmGetFollowers frm = new Foms.frmGetFollowers();
+            frm.UserName = txtUsername.Text;
+            frm.ShowDialog();
         }
     }
 }

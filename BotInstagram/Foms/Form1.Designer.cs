@@ -107,10 +107,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbDownloadPost = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtLinkForDownload = new System.Windows.Forms.TextBox();
             this.btnDownload = new System.Windows.Forms.Button();
+            this.btnGetFollower = new System.Windows.Forms.Button();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -128,7 +129,7 @@
             this.gbStory.SuspendLayout();
             this.gbPost.SuspendLayout();
             this.gbSearchInPostes.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbDownloadPost.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLogin
@@ -191,6 +192,7 @@
             // 
             // gbCommand
             // 
+            this.gbCommand.Controls.Add(this.btnGetFollower);
             this.gbCommand.Controls.Add(this.btnActivities);
             this.gbCommand.Controls.Add(this.btnEditProfile);
             this.gbCommand.Enabled = false;
@@ -914,17 +916,18 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // groupBox1
+            // gbDownloadPost
             // 
-            this.groupBox1.Controls.Add(this.btnDownload);
-            this.groupBox1.Controls.Add(this.txtLinkForDownload);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Location = new System.Drawing.Point(764, 86);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(208, 70);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Download Post : ";
+            this.gbDownloadPost.Controls.Add(this.btnDownload);
+            this.gbDownloadPost.Controls.Add(this.txtLinkForDownload);
+            this.gbDownloadPost.Controls.Add(this.label12);
+            this.gbDownloadPost.Enabled = false;
+            this.gbDownloadPost.Location = new System.Drawing.Point(764, 86);
+            this.gbDownloadPost.Name = "gbDownloadPost";
+            this.gbDownloadPost.Size = new System.Drawing.Size(208, 70);
+            this.gbDownloadPost.TabIndex = 12;
+            this.gbDownloadPost.TabStop = false;
+            this.gbDownloadPost.Text = "Download Post : ";
             // 
             // label12
             // 
@@ -952,12 +955,22 @@
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
+            // btnGetFollower
+            // 
+            this.btnGetFollower.Location = new System.Drawing.Point(107, 49);
+            this.btnGetFollower.Name = "btnGetFollower";
+            this.btnGetFollower.Size = new System.Drawing.Size(97, 23);
+            this.btnGetFollower.TabIndex = 2;
+            this.btnGetFollower.Text = "Get Follower";
+            this.btnGetFollower.UseVisualStyleBackColor = true;
+            this.btnGetFollower.Click += new System.EventHandler(this.btnGetFollower_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbDownloadPost);
             this.Controls.Add(this.gbSearchInPostes);
             this.Controls.Add(this.gbPost);
             this.Controls.Add(this.gbStory);
@@ -1002,8 +1015,8 @@
             this.gbPost.PerformLayout();
             this.gbSearchInPostes.ResumeLayout(false);
             this.gbSearchInPostes.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbDownloadPost.ResumeLayout(false);
+            this.gbDownloadPost.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1088,10 +1101,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbDownloadPost;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.TextBox txtLinkForDownload;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnGetFollower;
     }
 }
 

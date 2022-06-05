@@ -110,6 +110,12 @@
     <Compile Include="Foms\frmEditProfile.Designer.cs">
       <DependentUpon>frmEditProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Foms\frmGetFollowers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Foms\frmGetFollowers.Designer.cs">
+      <DependentUpon>frmGetFollowers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Foms\frmShowPost.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Foms\frmEditProfile.resx">
       <DependentUpon>frmEditProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Foms\frmGetFollowers.resx">
+      <DependentUpon>frmGetFollowers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Foms\frmShowPost.resx">
       <DependentUpon>frmShowPost.cs</DependentUpon>
