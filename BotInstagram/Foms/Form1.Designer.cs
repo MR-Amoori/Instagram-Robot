@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.gbLogin = new System.Windows.Forms.GroupBox();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -102,6 +103,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtTextForSearch = new System.Windows.Forms.TextBox();
             this.brnSearchTextInSearch = new System.Windows.Forms.Button();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtLinkForDownload = new System.Windows.Forms.TextBox();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.gbLogin.SuspendLayout();
             this.gbCommand.SuspendLayout();
             this.gbImageProfile.SuspendLayout();
@@ -119,6 +128,7 @@
             this.gbStory.SuspendLayout();
             this.gbPost.SuspendLayout();
             this.gbSearchInPostes.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLogin
@@ -184,16 +194,16 @@
             this.gbCommand.Controls.Add(this.btnActivities);
             this.gbCommand.Controls.Add(this.btnEditProfile);
             this.gbCommand.Enabled = false;
-            this.gbCommand.Location = new System.Drawing.Point(758, 12);
+            this.gbCommand.Location = new System.Drawing.Point(764, 12);
             this.gbCommand.Name = "gbCommand";
-            this.gbCommand.Size = new System.Drawing.Size(214, 144);
+            this.gbCommand.Size = new System.Drawing.Size(208, 83);
             this.gbCommand.TabIndex = 1;
             this.gbCommand.TabStop = false;
             this.gbCommand.Text = "Commands : ";
             // 
             // btnActivities
             // 
-            this.btnActivities.Location = new System.Drawing.Point(111, 20);
+            this.btnActivities.Location = new System.Drawing.Point(107, 21);
             this.btnActivities.Name = "btnActivities";
             this.btnActivities.Size = new System.Drawing.Size(97, 23);
             this.btnActivities.TabIndex = 1;
@@ -203,7 +213,7 @@
             // 
             // btnEditProfile
             // 
-            this.btnEditProfile.Location = new System.Drawing.Point(6, 20);
+            this.btnEditProfile.Location = new System.Drawing.Point(4, 22);
             this.btnEditProfile.Name = "btnEditProfile";
             this.btnEditProfile.Size = new System.Drawing.Size(97, 23);
             this.btnEditProfile.TabIndex = 0;
@@ -228,7 +238,7 @@
             // 
             this.btnChangeImage.Location = new System.Drawing.Point(6, 213);
             this.btnChangeImage.Name = "btnChangeImage";
-            this.btnChangeImage.Size = new System.Drawing.Size(99, 23);
+            this.btnChangeImage.Size = new System.Drawing.Size(91, 23);
             this.btnChangeImage.TabIndex = 1;
             this.btnChangeImage.Text = "Change";
             this.btnChangeImage.UseVisualStyleBackColor = true;
@@ -236,9 +246,9 @@
             // 
             // btnRemoveImage
             // 
-            this.btnRemoveImage.Location = new System.Drawing.Point(111, 213);
+            this.btnRemoveImage.Location = new System.Drawing.Point(105, 213);
             this.btnRemoveImage.Name = "btnRemoveImage";
-            this.btnRemoveImage.Size = new System.Drawing.Size(91, 23);
+            this.btnRemoveImage.Size = new System.Drawing.Size(97, 23);
             this.btnRemoveImage.TabIndex = 1;
             this.btnRemoveImage.Text = "Remove";
             this.btnRemoveImage.UseVisualStyleBackColor = true;
@@ -571,7 +581,10 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnLogout,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripButton1,
+            this.toolStripSeparator2,
+            this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 704);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(984, 25);
@@ -616,7 +629,7 @@
             // 
             this.btnSendPhotoDirect.Location = new System.Drawing.Point(10, 135);
             this.btnSendPhotoDirect.Name = "btnSendPhotoDirect";
-            this.btnSendPhotoDirect.Size = new System.Drawing.Size(95, 21);
+            this.btnSendPhotoDirect.Size = new System.Drawing.Size(87, 21);
             this.btnSendPhotoDirect.TabIndex = 2;
             this.btnSendPhotoDirect.Text = "Send Video";
             this.btnSendPhotoDirect.UseVisualStyleBackColor = true;
@@ -624,9 +637,9 @@
             // 
             // btnSendVideoDirect
             // 
-            this.btnSendVideoDirect.Location = new System.Drawing.Point(111, 135);
+            this.btnSendVideoDirect.Location = new System.Drawing.Point(105, 135);
             this.btnSendVideoDirect.Name = "btnSendVideoDirect";
-            this.btnSendVideoDirect.Size = new System.Drawing.Size(91, 21);
+            this.btnSendVideoDirect.Size = new System.Drawing.Size(97, 21);
             this.btnSendVideoDirect.TabIndex = 2;
             this.btnSendVideoDirect.Text = "Send Photo";
             this.btnSendVideoDirect.UseVisualStyleBackColor = true;
@@ -675,7 +688,7 @@
             this.gbShowPostes.Enabled = false;
             this.gbShowPostes.Location = new System.Drawing.Point(552, 12);
             this.gbShowPostes.Name = "gbShowPostes";
-            this.gbShowPostes.Size = new System.Drawing.Size(200, 88);
+            this.gbShowPostes.Size = new System.Drawing.Size(206, 88);
             this.gbShowPostes.TabIndex = 8;
             this.gbShowPostes.TabStop = false;
             this.gbShowPostes.Text = "Show Posts : ";
@@ -715,7 +728,7 @@
             this.gbStory.Enabled = false;
             this.gbStory.Location = new System.Drawing.Point(552, 86);
             this.gbStory.Name = "gbStory";
-            this.gbStory.Size = new System.Drawing.Size(200, 70);
+            this.gbStory.Size = new System.Drawing.Size(206, 70);
             this.gbStory.TabIndex = 9;
             this.gbStory.TabStop = false;
             this.gbStory.Text = "Story : ";
@@ -875,11 +888,76 @@
             this.brnSearchTextInSearch.UseVisualStyleBackColor = true;
             this.brnSearchTextInSearch.Click += new System.EventHandler(this.brnSearchTextInSearch_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(67, 22);
+            this.toolStripButton1.Text = "Developer ";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(0, 22);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnDownload);
+            this.groupBox1.Controls.Add(this.txtLinkForDownload);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Location = new System.Drawing.Point(764, 86);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(208, 70);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Download Post : ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 20);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Link :";
+            // 
+            // txtLinkForDownload
+            // 
+            this.txtLinkForDownload.Location = new System.Drawing.Point(39, 17);
+            this.txtLinkForDownload.Name = "txtLinkForDownload";
+            this.txtLinkForDownload.Size = new System.Drawing.Size(166, 21);
+            this.txtLinkForDownload.TabIndex = 1;
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.Location = new System.Drawing.Point(4, 41);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(202, 23);
+            this.btnDownload.TabIndex = 2;
+            this.btnDownload.Text = "Download";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbSearchInPostes);
             this.Controls.Add(this.gbPost);
             this.Controls.Add(this.gbStory);
@@ -894,6 +972,7 @@
             this.Controls.Add(this.gbCommand);
             this.Controls.Add(this.gbLogin);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Instagram Robot";
@@ -923,6 +1002,8 @@
             this.gbPost.PerformLayout();
             this.gbSearchInPostes.ResumeLayout(false);
             this.gbSearchInPostes.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1003,6 +1084,14 @@
         private System.Windows.Forms.TextBox txtUsernameForSearch;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.TextBox txtLinkForDownload;
+        private System.Windows.Forms.Label label12;
     }
 }
 

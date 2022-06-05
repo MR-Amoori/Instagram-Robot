@@ -11,9 +11,11 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace BotInstagram
 {
@@ -85,16 +87,22 @@ namespace BotInstagram
 
         private async void btnRemoveImage_Click(object sender, EventArgs e)
         {
-            var result = await ctx.api.AccountProcessor.RemoveProfilePictureAsync();
-            if (result.Succeeded)
+            MessageBox.Show("Remove Profile ?" , "Wrning !" , MessageBoxButtons.YesNo , MessageBoxIcon.Warning);
+            if ( DialogResult == DialogResult.Yes)
             {
-                pcImage.Image = null;
+                var result = await ctx.api.AccountProcessor.RemoveProfilePictureAsync();
+                if (result.Succeeded)
+                {
+                    pcImage.Image = null;
+                }
             }
         }
 
         private async void btnChangeImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image Files|*.bmp;*.jpeg;*.jpg;*.png;*.gif";
+            op.Title = "Select Image Profile";
             if (op.ShowDialog() == DialogResult.OK)
             {
                 var picByte = File.ReadAllBytes(op.FileName);
@@ -366,37 +374,6 @@ namespace BotInstagram
             txtUsernameForFollowAndUnFollow.Text = dgvFollowers.SelectedCells[0].Value.ToString();
         }
 
-        //private async void button1_Click(object sender, EventArgs e)
-        //{
-
-        //var mds = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
-        //if (mds.Succeeded)
-        //{
-        //    var first = mds.Value[188];
-
-        //    //foreach (var item in mds.Value)
-        //    //{
-        //        var media = await ctx.api.MediaProcessor.GetMediaLikersAsync(first.InstaIdentifier);
-        //        foreach (var it in media.Value)
-        //        {
-        //            dgvBlockUsers.Rows.Add(it.UserName, it.FullName);
-        //        }
-        //   // }
-        //}
-
-        //var posts = await ctx.api.UserProcessor.GetUserMediaAsync("iman_madaeny", PaginationParameters.MaxPagesToLoad(Int32.MaxValue));
-
-        //var post = posts.Value[65];
-
-        //var likers = await ctx.api.MediaProcessor.GetMediaLikersAsync(post.InstaIdentifier);
-
-        //foreach (var liker in likers.Value)
-        //{
-        //    dgvBlockUsers.Rows.Add(liker.UserName, liker.FullName);
-        //}
-
-        //  }
-
         private async void btnStosryPhoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -517,27 +494,36 @@ namespace BotInstagram
             }
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripLabel1.Text = DateTime.Now.ToString("H:m:ss");
+        }
 
-        //private async void button1_Click(object sender, EventArgs e)
-        //{
-        //    var username = await ctx.api.UserProcessor.GetCurrentUserAsync();
-        //    var followings = await ctx.api.UserProcessor.GetUserFollowingAsync("mr__amoori", PaginationParameters.Empty);
-        //    List<string> ls = new List<string>();
-        //    foreach (var item in followings.Value)
-        //    {
-        //        ls.Add(item.UserName);
-        //    }
-        //    if (ls.Any(c => c.Contains(username.Value.UserName)))
-        //    {
-        //        MessageBox.Show("Ok");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("No");
-        //        var result = await ctx.api.UserProcessor.GetUserAsync("mr__amoori");
-        //        var res = ctx.api.UserProcessor.UnFollowUserAsync(result.Value.Pk);
-        //    }
-        //}
+        private async void btnDownload_Click(object sender, EventArgs e)
+        {
+            Uri link = new Uri(txtLinkForDownload.Text);
+            var media = await ctx.api.MediaProcessor.GetMediaIdFromUrlAsync(link);
+            if (media.Succeeded)
+            {
+                var result = await ctx.api.MediaProcessor.GetMediaByIdAsync(media.Value);
+                if (result.Value.MediaType == InstaMediaType.Video)
+                {
+                    string linkDownload = result.Value.Videos[result.Value.Videos.Count - 1].Uri.ToString();
 
+                    string addres = @"C:\Program Files (x86)\Internet Download Manager\IDMan.exe";
+                    string linkPost = linkDownload;
+                    System.Diagnostics.Process.Start(addres, "-d " + linkPost);
+
+                }
+                else
+                {
+                    MessageBox.Show("No Video Post !");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Not Found !");
+            }
+        }
     }
 }
